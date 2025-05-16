@@ -1,11 +1,1 @@
-<h1>Products</h1>
-
-<ul *ngIf="products.length > 0; else loading">
-  <li *ngFor="let product of products">
-    {{ product.title }} - ${{ product.price }}
-  </li>
-</ul>
-
-<ng-template #loading>
-  <p>Loading products...</p>
-</ng-template>
+<router-outlet></router-outlet>

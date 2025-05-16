@@ -1,24 +1,11 @@
-// src/app/app.component.ts
-
-import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ProductService } from './services/product.service';
-import { Product } from './models/product.model';
-import { OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule],
-  templateUrl: './app.component.html', // Usamos template separado
+  imports: [RouterOutlet],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-  private productService = inject(ProductService);
-  products: Product[] = [];
-
-  ngOnInit(): void {
-    this.productService.getAll().subscribe((data) => {
-      this.products = data;
-    });
-  }
-}
+export class AppComponent {}
