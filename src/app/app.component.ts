@@ -1,12 +1,24 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+// src/app/app.component.ts
+
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ProductService } from './services/product.service';
+import { Product } from './models/product.model';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './app.component.html', // Usamos template separado
 })
-export class AppComponent {
-  title = 'data-table-crud-app';
+export class AppComponent implements OnInit {
+  private productService = inject(ProductService);
+  products: Product[] = [];
+
+  ngOnInit(): void {
+    this.productService.getAll().subscribe((data) => {
+      this.products = data;
+    });
+  }
 }
