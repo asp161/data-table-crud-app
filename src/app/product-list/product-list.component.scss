@@ -1,3 +1,4 @@
+/* src/app/product-list/product-list.component.scss */
 .table-container {
   max-width: 1400px;
   margin: 20px auto;
@@ -120,4 +121,10 @@ th, td {
   .mat-paginator {
     font-size: 10px;
   }
+}
+
+/* Custom dialog styling */
+:host ::ng-deep .custom-dialog .mat-mdc-dialog-surface {
+  border-radius: 8px;
+  overflow: hidden;
 }

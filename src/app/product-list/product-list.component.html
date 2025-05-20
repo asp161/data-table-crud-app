@@ -45,7 +45,7 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Actions</th>
         <td mat-cell *matCellDef="let element">
-          <button mat-icon-button color="primary" class="action-button" aria-label="View product">
+          <button mat-icon-button color="primary" class="action-button" (click)="viewProduct(element)" aria-label="View product">
             <mat-icon>visibility</mat-icon>
           </button>
           <button mat-icon-button color="warn" class="action-button" aria-label="Delete product">

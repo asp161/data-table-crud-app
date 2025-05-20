@@ -1,13 +1,16 @@
+// src/app/product-list/product-list.component.ts
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSortModule, MatSort } from '@angular/material/sort';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { ProductSearchComponent } from '../product-search/product-search.component';
 import { ProductService } from '../services/product.service';
 import { Product } from '../models/product.model';
 import { MatIconModule } from '@angular/material/icon';
+import { ProductDetailComponent } from '../product-detail/product-detail.component';
 
 @Component({
   selector: 'app-product-list',
@@ -18,6 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatSortModule,
     MatPaginatorModule,
+    MatDialogModule,
     MatIconModule,
     ProductSearchComponent,
   ],
@@ -31,7 +35,7 @@ export class ProductListComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.loadProducts();
@@ -65,5 +69,15 @@ export class ProductListComponent implements AfterViewInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  viewProduct(product: Product): void {
+    this.dialog.open(ProductDetailComponent, {
+      data: product,
+      width: '650px',
+      maxWidth: '90vw',
+      autoFocus: false,
+      panelClass: 'custom-dialog',
+    });
   }
 }
