@@ -1,0 +1,15 @@
+.confirm-dialog-content {
+  padding: 24px 16px 8px 16px;
+  max-width: 340px;
+  text-align: center;
+}
+h2 {
+  margin: 0 0 12px 0;
+  color: #d32f2f;
+}
+.dialog-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 24px;
+}

@@ -1,0 +1,41 @@
+<div class="dialog-content">
+  <h2>Nuevo producto</h2>
+  <form (ngSubmit)="addProduct()" #form="ngForm">
+    <div class="product-container">
+      <div class="product-image-preview" *ngIf="product.image">
+        <img [src]="product.image" alt="Vista previa" />
+      </div>
+      <div class="product-info">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Título</mat-label>
+          <input matInput required [(ngModel)]="product.title" name="title" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Precio</mat-label>
+          <input matInput required type="number" [(ngModel)]="product.price" name="price" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Categoría</mat-label>
+          <mat-select required [(ngModel)]="product.category" name="category">
+            <mat-option value="electronics">Electronics</mat-option>
+            <mat-option value="jewelery">Jewelery</mat-option>
+            <mat-option value="men's clothing">Men's clothing</mat-option>
+            <mat-option value="women's clothing">Women's clothing</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Descripción</mat-label>
+          <textarea matInput required [(ngModel)]="product.description" name="description"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Imagen (URL)</mat-label>
+          <input matInput required [(ngModel)]="product.image" name="image" />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="dialog-actions">
+      <button mat-button type="button" (click)="dialogRef.close()">Cancelar</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Añadir</button>
+    </div>
+  </form>
+</div>
