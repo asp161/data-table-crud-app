@@ -20,15 +20,15 @@ import { CommonModule } from '@angular/common';
   template: `
     <div class="search-bar">
       <mat-form-field appearance="outline" class="search-input">
-        <mat-label>Search product</mat-label>
+        <mat-label>Search Products</mat-label>
         <input
           matInput
           type="text"
           [(ngModel)]="searchText"
           (input)="onSearchChange()"
-          placeholder="Name"
+          placeholder="Enter name or description"
         />
-        <button mat-icon-button matSuffix *ngIf="searchText" (click)="clearText()" aria-label="Limpiar">
+        <button mat-icon-button matSuffix *ngIf="searchText" (click)="clearText()" aria-label="Clear search">
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
@@ -36,7 +36,7 @@ import { CommonModule } from '@angular/common';
       <mat-form-field appearance="outline" class="category-select">
         <mat-label>Category</mat-label>
         <mat-select [(ngModel)]="category" (selectionChange)="onSearchChange()">
-          <mat-option value="">All</mat-option>
+          <mat-option value="">All Categories</mat-option>
           <mat-option *ngFor="let cat of categories" [value]="cat">{{ cat }}</mat-option>
         </mat-select>
       </mat-form-field>
@@ -48,12 +48,34 @@ import { CommonModule } from '@angular/common';
       gap: 1rem;
       align-items: center;
       margin-bottom: 1.5rem;
-      flex-wrap: wrap;
       margin-top: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
     }
     .search-input, .category-select {
       min-width: 220px;
       flex: 1 1 220px;
+      max-width: 400px;
+    }
+    @media (max-width: 600px) {
+      .search-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+      }
+      .search-input, .category-select {
+        min-width: 100%;
+        max-width: 100%;
+        margin: 0;
+      }
+      .mat-form-field {
+        font-size: 14px;
+      }
+    }
+    @media (max-width: 400px) {
+      .mat-form-field {
+        font-size: 12px;
+      }
     }
   `],
 })

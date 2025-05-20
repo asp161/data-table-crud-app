@@ -6,8 +6,14 @@
   border-radius: 8px;
 }
 
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 table {
   width: 100%;
+  min-width: 600px;
   margin-bottom: 16px;
   background-color: white;
   border-radius: 8px;
@@ -27,12 +33,12 @@ table {
 
 .action-button {
   margin: 0 4px;
-  padding: 6px 12px;
-  font-size: 14px;
+  padding: 6px;
 }
 
 th, td {
   padding: 12px;
+  text-align: left;
 }
 
 .mat-header-cell {
@@ -43,6 +49,11 @@ th, td {
 
 .mat-row:hover {
   background-color: #f0f4ff;
+}
+
+.mat-paginator {
+  background-color: white;
+  border-radius: 0 0 8px 8px;
 }
 
 /* Responsive design */
@@ -66,8 +77,11 @@ th, td {
   }
 
   .action-button {
-    padding: 4px 8px;
-    font-size: 12px;
+    padding: 4px;
+  }
+
+  .mat-paginator {
+    font-size: 14px;
   }
 }
 
@@ -85,7 +99,25 @@ th, td {
     height: 30px;
   }
 
+  .action-button {
+    padding: 2px;
+  }
+
   .mat-paginator {
     font-size: 12px;
+  }
+
+  .hide-mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .table-container {
+    padding: 0 4px;
+  }
+
+  .mat-paginator {
+    font-size: 10px;
   }
 }
