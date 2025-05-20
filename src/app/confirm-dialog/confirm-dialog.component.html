@@ -1,12 +1,12 @@
-<div class="confirm-dialog-content">
-  <h2>Delete product?</h2>
-  <p>{{ data.message }}</p>
+<div class="confirm-dialog-content" role="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-message">
+  <h2 id="dialog-title">Delete Product?</h2>
+  <p id="dialog-message">{{ data.message }}</p>
   <div class="dialog-actions">
-    <button mat-stroked-button color="primary" (click)="onCancel()">
+    <button mat-stroked-button color="primary" (click)="onCancel()" aria-label="Cancel deletion">
       Cancel
     </button>
-    <button mat-raised-button color="warn" (click)="onConfirm()">
-      Delete
+    <button mat-raised-button color="warn" (click)="onConfirm()" aria-label="Confirm deletion">
+      <mat-icon>delete</mat-icon> Delete
     </button>
   </div>
 </div>

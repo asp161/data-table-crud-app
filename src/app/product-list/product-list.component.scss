@@ -1,43 +1,51 @@
-/* src/app/product-list/product-list.component.scss */
+.page-title {
+  text-align: left;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 2rem 0 1rem 2vw;
+  color: #3f51b5;
+  width: 98vw;
+  max-width: 1700px;
+  padding-top: 0.4rem;
+}
+
 .table-container {
-  max-width: 1400px;
-  margin: 20px auto;
-  padding: 0 16px;
-  background-color: #f5f5f5;
-  border-radius: 8px;
+  width: 100vw;
+  max-width: 1800px;
+  margin: 32px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .table-wrapper {
+  width: 100%;
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  padding: 16px 0;
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: center;
 }
 
 table {
-  width: 100%;
-  min-width: 600px;
-  margin-bottom: 16px;
-  background-color: white;
+  width: 98vw;
+  max-width: 1650px;
+  min-width: 700px;
+  background: white;
   border-radius: 8px;
   overflow: hidden;
+  margin: 0 auto;
 }
 
 .mat-elevation-z8 {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
-.product-image {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 4px;
-}
-
-.action-button {
-  margin: 0 4px;
-  padding: 6px;
-}
-
-th, td {
+th,
+td {
   padding: 12px;
   text-align: left;
 }
@@ -52,24 +60,150 @@ th, td {
   background-color: #f0f4ff;
 }
 
-.mat-paginator {
-  background-color: white;
-  border-radius: 0 0 8px 8px;
+th.description-col,
+td.description-col,
+th.title-col,
+td.title-col {
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Responsive design */
-@media (max-width: 960px) {
-  .table-container {
-    max-width: 100%;
-    padding: 0 8px;
+th.actions-col,
+td.actions-col {
+  min-width: 100px;
+  white-space: nowrap;
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.product-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.action-button {
+  margin: 0 2px;
+  padding: 6px;
+}
+
+.actions-row {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+.top-bar app-product-search {
+  flex: 1 1 300px;
+  min-width: 240px;
+}
+
+.top-bar > button {
+  flex: 0 0 auto;
+  height: 56px;
+  min-width: 160px;
+  font-weight: 600;
+}
+
+.card-mobile {
+  display: none;
+}
+
+.product-card {
+  display: flex;
+  gap: 1rem;
+  background: white;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1rem;
+  flex-direction: row;
+  align-items: center;
+  width: 95vw;
+  max-width: 500px;
+}
+
+.card-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.card-content {
+  flex: 1;
+}
+
+.card-content h3 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.add-product-fab {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #3f51b5;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  z-index: 1000;
+}
+
+.add-product-fab:hover {
+  background-color: #303f9f;
+}
+
+@media (min-width: 601px) {
+  .add-product-fab {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .top-bar {
+    margin-bottom: 1rem;
+    padding: 0 1rem;
   }
 
-  table {
-    font-size: 14px;
+  .top-bar app-product-search,
+  .top-bar > button {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
   }
 
-  th, td {
-    padding: 8px;
+  .hide-tablet {
+    display: none !important;
   }
 
   .product-image {
@@ -77,45 +211,63 @@ th, td {
     height: 40px;
   }
 
-  .action-button {
-    padding: 4px;
+  th,
+  td {
+    padding: 8px;
   }
 
-  .mat-paginator {
-    font-size: 14px;
+  th.description-col,
+  td.description-col {
+    max-width: 70px;
+    font-size: 12px;
+  }
+
+  .mat-form-field {
+    width: 100% !important;
+    margin: 0 !important;
   }
 }
 
 @media (max-width: 600px) {
-  table {
+  .table-desktop {
+    display: none;
+  }
+
+  .card-mobile {
+    display: block;
+  }
+
+  .hide-mobile {
+    display: none !important;
+  }
+
+  th,
+  td {
+    padding: 4px;
     font-size: 12px;
-  }
-
-  th, td {
-    padding: 6px;
-  }
-
-  .product-image {
-    width: 30px;
-    height: 30px;
-  }
-
-  .action-button {
-    padding: 2px;
   }
 
   .mat-paginator {
     font-size: 12px;
   }
 
-  .hide-mobile {
+  .top-bar {
+    gap: 0.75rem;
+  }
+
+  .top-bar app-product-search,
+  .top-bar > button {
+    width: 100%;
+  }
+
+  .buttonadddesktop {
     display: none;
   }
 }
 
 @media (max-width: 400px) {
-  .table-container {
-    padding: 0 4px;
+  .mat-form-field {
+    font-size: 12px;
   }
 
   .mat-paginator {
@@ -123,44 +275,15 @@ th, td {
   }
 }
 
-/* Custom dialog styling */
-:host ::ng-deep .custom-dialog .mat-mdc-dialog-surface {
-  border-radius: 8px;
-  overflow: hidden;
+::ng-deep .mat-paginator-container {
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 1rem;
 }
 
-// styles.scss o global
-.snackbar-success {
-  background: #43a047 !important;
-  color: #fff !important;
-  font-weight: 500;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.top-bar {
-    display: flex;
-    margin-bottom: 1.5rem;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.top-bar > button {
-  height: 56px; // igual que el mat-form-field de la barra de búsqueda
-  margin-top: 2rem; // igual que el search-bar para alineación vertical
-}
-
-@media (max-width: 900px) {
-  .top-bar {
+@media (max-width: 600px) {
+  ::ng-deep .mat-paginator-container {
     flex-direction: column;
-    align-items: stretch;
     gap: 0.5rem;
-  }
-  .top-bar > button {
-    width: 100%;
-    height: 48px;
-    margin-top: 0.5rem;
   }
 }

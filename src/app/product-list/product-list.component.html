@@ -1,67 +1,96 @@
 <div class="table-container">
+  <h1 class="page-title">Angular Frontend Test 1</h1>
   <div class="top-bar">
-    <button mat-raised-button color="primary" (click)="addProduct()">
+    <app-product-search (search)="onSearch($event)"></app-product-search>
+    <button mat-raised-button color="primary" class="buttonadddesktop" (click)="addProduct()">
       <mat-icon>add</mat-icon> Add Product
     </button>
-    <app-product-search (search)="onSearch($event)"></app-product-search>
   </div>
-  <div class="table-wrapper">
+  <div class="table-desktop">
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
       <!-- Image Column -->
       <ng-container matColumnDef="image">
-        <th mat-header-cell *matHeaderCellDef>Image</th>
-        <td mat-cell *matCellDef="let element">
-          <img [src]="element.image" alt="Product Image" class="product-image">
+        <th mat-header-cell *matHeaderCellDef class="hide-mobile hide-tablet">Image</th>
+        <td mat-cell *matCellDef="let element" class="hide-mobile hide-tablet">
+          <img [src]="element.image" alt="Product Image" class="product-image" />
         </td>
       </ng-container>
-
       <!-- ID Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
         <td mat-cell *matCellDef="let element">{{ element.id }}</td>
       </ng-container>
-
       <!-- Title Column -->
       <ng-container matColumnDef="title">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
-        <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="title-col">Title</th>
+        <td mat-cell *matCellDef="let element" class="title-col">{{ element.title }}</td>
       </ng-container>
-
       <!-- Price Column -->
       <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
         <td mat-cell *matCellDef="let element">${{ element.price | number:'1.2-2' }}</td>
       </ng-container>
-
       <!-- Category Column -->
       <ng-container matColumnDef="category">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
         <td mat-cell *matCellDef="let element">{{ element.category }}</td>
       </ng-container>
-
       <!-- Description Column -->
       <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header class="hide-mobile">Description</th>
-        <td mat-cell *matCellDef="let element" class="hide-mobile">{{ element.description | slice:0:100 }}...</td>
-      </ng-container>
-
-      <!-- Actions Column -->
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef>Actions</th>
-        <td mat-cell *matCellDef="let element">
-          <button mat-icon-button color="primary" class="action-button" (click)="viewProduct(element)" aria-label="View product">
-            <mat-icon>visibility</mat-icon>
-          </button>
-<button mat-icon-button color="warn" class="action-button" aria-label="Delete product" (click)="deleteProduct(element)">
-  <mat-icon>delete</mat-icon>
-</button>
+        <th mat-header-cell *matHeaderCellDef class="description-col hide-mobile hide-tablet">Description</th>
+        <td mat-cell *matCellDef="let element" class="description-col hide-mobile hide-tablet">
+          {{ element.description }}
         </td>
       </ng-container>
-
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="actions-col">Actions</th>
+        <td mat-cell *matCellDef="let element" class="actions-col">
+          <div class="actions-row">
+            <button mat-icon-button color="primary" (click)="viewProduct(element)">
+              <mat-icon>visibility</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleteProduct(element)">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-icon-button color="accent" (click)="editProduct(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </div>
+        </td>
+      </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
   </div>
-
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of products"></mat-paginator>
+  <div class="card-mobile">
+    <div class="product-card" *ngFor="let element of dataSource.data">
+      <img [src]="element.image" alt="{{ element.title }}" class="card-img" />
+      <div class="card-content">
+        <h3>{{ element.title }}</h3>
+        <p><strong>ID:</strong> {{ element.id }}</p>
+        <p><strong>Price:</strong> ${{ element.price | number:'1.2-2' }}</p>
+        <p><strong>Category:</strong> {{ element.category }}</p>
+        <div class="card-actions">
+          <button mat-icon-button color="primary" (click)="viewProduct(element)">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteProduct(element)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button mat-icon-button color="accent" (click)="editProduct(element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button mat-fab class="add-product-fab" (click)="addProduct()">
+    <mat-icon>add</mat-icon>
+  </button>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Select page of products"
+  ></mat-paginator>
 </div>
