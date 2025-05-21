@@ -63,7 +63,6 @@ Navigate to [http://localhost:4200/](http://localhost:4200/) in your browser.
 - **UI Library:** Angular Material for consistent, accessible, and responsive UI components.
 - **State Management:** Component-level state (no external state library needed for this scale).
 - **Styling:** SCSS with responsive design using media queries.
-- **Testing:** Karma/Jasmine for unit tests.
 - **AI Tools:** GitHub Copilot  (see [AI Tool Usage Documentation](#ai-tool-usage-documentation)).
 
 #### Key Decisions
